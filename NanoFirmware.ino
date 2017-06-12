@@ -79,6 +79,7 @@ bool homeAxis(){
  // static (global) ints for hacky command line interface
  int command = 0;
  int serialValue = 0;
+ int speed_delay = 10; // ms
  
 void loop() {
   int direction_status = 0; // 1 corresponds to high directino pin
@@ -98,6 +99,10 @@ void loop() {
     Serial.print("O \n");
     command = 3; // oscillate forward then back
    }
+   else if (ch == 's'){
+    Serial.print("S \n"); 
+    command = 4; // speed change command
+   }
    else if(ch >= '0' && ch <= '9')   {           // is ch a number?  
      serialValue = serialValue * 10 + ch - '0';           // yes, accumulate the integer value in serialValue
 
@@ -113,7 +118,7 @@ void loop() {
         for (int i = 0; i<serialValue; i++){
         // Serial.print("step\n");
         pulse(stepPin,1);
-        delay(10);
+        delay(speed_delay);
       }
        }
        else if (command == 2){
@@ -124,7 +129,7 @@ void loop() {
         for (int i = 0; i<serialValue; i++){
       //Serial.print("step\n");
         pulse(stepPin,1);
-        delay(10);
+        delay(speed_delay);
       }
        }
        else if (command == 3){
@@ -135,15 +140,24 @@ void loop() {
         for (int i = 0; i<serialValue; i++){
         // Serial.print("step\n");
         pulse(stepPin,1);
-        delay(10);
+        delay(speed_delay);
       }
       digitalWrite(directionPin,HIGH);
         for (int i = 0; i<serialValue; i++){
         // Serial.print("step\n");
         pulse(stepPin,1);
-        delay(10);
+        delay(speed_delay);
       }
        }
+       else if (command == 4){
+        Serial.print("Speed Change"); 
+        Serial.print(serialValue); 
+        if (serialValue >= 2)
+        {
+          speed_delay = serialValue; 
+        }
+       }
+
        Serial.print("OP: ");
        Serial.print(serialValue);
        Serial.print("\t");
