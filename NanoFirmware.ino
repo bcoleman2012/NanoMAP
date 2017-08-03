@@ -85,7 +85,7 @@ void loop() {
   int direction_status = 0; // 1 corresponds to high directino pin
  if( Serial.available())
  {
-   Serial.print("READY\n"); 
+   Serial.print("r"); 
    char ch = Serial.read();
    if (ch == 'b'){
     Serial.print("B \n");
