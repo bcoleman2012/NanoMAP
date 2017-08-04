@@ -31,7 +31,7 @@ class SessionManager:
 		if (len(self._arduino_ports) != 0): 
 			self._selected_port = self._arduino_ports[0]
 
-			start_indicator = "READY\n" # needs replaced with better code in next firmware iteration
+			start_indicator = "r" # needs replaced with better code in next firmware iteration
 			
 			if self._verbose: 
 				print "Attempting serial connection with Arduino device on",self._selected_port
