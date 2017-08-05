@@ -70,6 +70,7 @@ class SessionManager:
 			if self._verbose: 
 				print "Serial connection established, attempting firmware handshake"
 
+			'''
 			curr_time = time.time()
 			while (curr_time < start_time + timeout) and (self._serial_session.readline() != start_indicator):
 				curr_time = time.time()
@@ -77,7 +78,7 @@ class SessionManager:
 			if curr_time > start_time + timeout: 
 				if self._verbose: 
 					print "Unable to communicate with device. Is the firmware up to date?" 
-
+			'''
 		else: 
 			self.scanPorts()
 
