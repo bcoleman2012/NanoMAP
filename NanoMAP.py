@@ -64,13 +64,13 @@ class SessionManager:
 				print "Attempting serial connection with Arduino device on",self._selected_port
 			
 			self._serial_session = serial.Serial(self._selected_port, baudrate, timeout = 0.1)
-			timeout = 10
+			timeout = 5
 			start_time = time.time()
 
 			if self._verbose: 
 				print "Serial connection established, attempting firmware handshake"
 
-			'''
+			
 			curr_time = time.time()
 			while (curr_time < start_time + timeout) and (self._serial_session.readline() != start_indicator):
 				curr_time = time.time()
@@ -78,7 +78,7 @@ class SessionManager:
 			if curr_time > start_time + timeout: 
 				if self._verbose: 
 					print "Unable to communicate with device. Is the firmware up to date?" 
-			'''
+			
 		else: 
 			self.scanPorts()
 
@@ -182,8 +182,6 @@ if __name__ == "__main__":
 						used_ports.append(p.device)
 						threads.append(Thread(target=runOnPort, args=(p.device, used_ports)))
 						threads[-1].start()
-
-
 
 
 	elif len(ports) == 1:
