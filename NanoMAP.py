@@ -138,7 +138,7 @@ class NanoMAPController:
 			self._session_manager.sendCommand(cmd)
 
 	def parseScriptFromList(self, cmd_list): 
-		for cmd in script_list: 
+		for cmd in cmd_list: 
 			self._session_manager.sendCommand(cmd)
 
 
